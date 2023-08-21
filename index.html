@@ -1,28 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./script.js"></script>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <div class="header">
-        <h2>mylib</h2>
+        <p>mylib</p>
     </div>
     <div class="container">
         <div class="top">
-            <h3>+</h3>
+            <button id="addBook">+ Add book</button>
         </div>
         <div class="middle">
-            <div class="cards" id="new-Card">
-                
+            <div class="cards" id="grid">
+                <div class="card">
+                    <div class="book-title">book title</div>
+                    <div class="book-author">author</div>
+                </div>
+                <div class="card">
+                    <div class="book-title">book title</div>
+                    <div class="book-author">author</div>
+                </div>
+                <div class="card">
+                    <div class="book-title">book title</div>
+                    <div class="book-author">author</div>
+                </div>
+                <div class="card">
+                    <div class="book-title">book title</div>
+                    <div class="book-author">author</div>
+                </div>
+                <div class="card">
+                    <div class="book-title">book title</div>
+                    <div class="book-author">author</div>
+                </div>
+                <div class="card">
+                    <div class="book-title">book title</div>
+                    <div class="book-author">author</div>
+                </div>
             </div>
         </div>
         <div class="bottom">
-
+            <p>bottom</p>
         </div>
+
     </div>
+        <dialog id="addBookModal">
+            <p>Add a new book to the library</p>
+            <form id="modalForm">
+                <div class="book-inputs">
+                    <label for="dialogTitle">Title</label>
+                    <input type="text" id="dialogTitle" placeholder="Title">
+                    <label for="dialogAuthor">Author</label>
+                    <input type="text" id="dialogAuthor" placeholder="Author">
+                    <label for="formPages">Pages</label>
+                    <input type="text" id="formPages" pattern="[0-9]+$">
+                </div>
+                <div class="dialog-buttons">
+                    <button id="confirmButton" value="default">Add</button>
+                    <button value="Cancel" formmethod="dialog" id="cancelModal">Cancel</button>
+                </div>
+            </form>
+        </dialog>
 </body>
+<script src="./script.js"></script>
+
 </html>
