@@ -3,20 +3,33 @@ let currentPage = 1;
 let booksPerPage = 10;
 
 let cardsGrid = document.getElementById("grid");
-const dia = document.getElementById("addBookModal");
+const dia = document.querySelector(".modal");
+const overlay = document.getElementById('backdrop');
 const addBookButton = document.getElementById("addBook");
 const cancelModal = document.getElementById('cancelModal');
+const confirmButton = document.getElementById("confirmButton");
+const dialogTitle = document.getElementById('dialogTitle');
+const dialogAuthor = document.getElementById('dialogAuthor');
+const formPages = document.getElementById('formPages');
 
+document.addEventListener("submit", (e) => {
+    e.preventDefault();
+    submitModal();
+});
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
-})
-addBookButton.addEventListener("click", () => {
-    dia.style.display = 'flex';
-    dia.showModal();
 });
-cancelModal.addEventListener("click", () => {
+addBookButton.addEventListener("click", () => {
+    openModal();
+});
+cancelModal.addEventListener("click", (e) => {
     closeModal();
 });
+backdrop.addEventListener('click', (e) => {
+    if (e.target != dia){
+        closeModal();
+    }
+})
 
 function Book(title, author, pages) {
     this.title = title;
@@ -32,15 +45,14 @@ myLibrary.push(wind);
 function addBookToLibrary(title, author, pages) {
     const newBook = new Book(title, author, pages);
     myLibrary.push(newBook);
+    displayBooks();
 }
 addBookToLibrary("Meow?", "Lando", 1);
 addBookToLibrary("The Red Queen Theory", "Matt Ridley", 365);
-addBookToLibrary("A Tale of Two Citiies", "Ray Bradbury", 300);
+addBookToLibrary("A Tale of Two Cities", "Ray Bradbury", 300);
 addBookToLibrary("The Life of Pie", "Yann Martel", 250);
 
 displayBooks();
-
-
 
 function displayBooks () {
     while (cardsGrid.firstChild) {
@@ -67,27 +79,20 @@ function newCard (book){
     cardsGrid.appendChild(card);
     return card;
 }
-function closeModal(){
-    dia.style.display = 'none';
+function submitModal(){
+    console.log('pressed');
+    addBookToLibrary(dialogTitle.value, dialogAuthor.value, formPages.value);
+    closeModal();
 }
-/* function createModal(){
-    const modal = document.createElement('div');
-    modal.setAttribute('id', 'addBookModal');
-
-    const modalTitle = document.createElement('p');
-    modalTitle.textContent = 'Add a new book to the library';
-    modal.appendChild(modalTitle);
-
-    const form = document.createElement('form');
-    form.setAttribute('id', 'modalForm');
-
-    const inputs = document.createElement('div');
-    inputs.classList.add('book-inputs');
-
-    const titleLabel = document.createElement('label');
-    titleLabel.setAttribute('for', 'dialogTitle');
-    inputs.appendChild('titleLabel');
-
-    const titleInput = document.createElement('text');
-    titleInput.setAttribute('id', 'dialogTitle');
-} */
+function openModal(){
+    dia.classList.remove('inactive');
+    dia.classList.add('active');
+    backdrop.classList.add('active');
+    backdrop.classList.remove('inactive');
+}
+function closeModal(){
+    dia.classList.remove('active');
+    dia.classList.add('inactive');
+    backdrop.classList.remove('active');
+    backdrop.classList.add('inactive');
+}

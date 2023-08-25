@@ -18,13 +18,13 @@ html {
 body {
     height: 100vh;
     display: grid;
-    grid-template-rows: 7vh 1fr;
+    grid-template-rows: minmax(2.5rem, 7vh) 8fr minmax(2em, 0.5fr);
 }
 
 .container {
     height: 100%;
     display: grid;
-    grid-template-rows: 0.5fr 7fr 0.5fr;
+    grid-template-rows: 0.75fr 9fr;
 }
 
 .header {
@@ -45,19 +45,24 @@ body {
     justify-content: center;
     align-items: center;
 }
-
+#addBook{
+    border: none;
+    background-color: white;
+}
 .middle {
     grid-row: 2/3;
 }
 .cards{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10vw, 1fr));
+    grid-template-rows: repeat(auto-fit);
     padding: 15vh 10vw 15vh 10vw;
     gap: 1vw;
 }
 .card{
     min-width: 100px;
     height: 30vh;
+    min-height: 200px;
     border: 1px solid rgba(109, 110, 112, 1);
     border-radius: 10px;
     box-shadow: 5px 5px rgba(109, 110, 112, 0.5);
@@ -74,26 +79,53 @@ body {
 }
 #addBookModal{
     position: absolute;
+    top: 50%;
     margin: auto;
-    display: none;
-    flex-flow: column wrap;
+    padding: 0;
+    grid-template-rows: 1fr 6fr;
     border: none;
     padding: 10px;
     border-radius: 5px;
     background-color: var(--paper-colour);
-    height: 35vh;
+    height: 30vh;
+    justify-items: center;
+    z-index: 1;
+}
+#modalForm{
+    display: grid;
+    gap: 1vh;
+    grid-template-rows: 5fr 1fr;
+    height: 100%;
+    width: inherit;
+    padding: 0 5px 0 5px;
 }
 .book-inputs{
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-}
-#modalForm{
-    height: 90%;
+    width: inherit;
 }
 input{
-    width: 200px;
+    max-width: 200px;
+}
+#backdrop{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+.modal.inactive{
+    display: none;
+}
+.modal.active{
+    display: grid;
 }
 dialog::backdrop{
     background: rgba(0, 0, 0, 0.35);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }

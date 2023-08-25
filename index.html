@@ -41,31 +41,35 @@
                 <div class="card">
                     <div class="book-title">book title</div>
                     <div class="book-author">author</div>
+                    <div class="book-pages"></div>
                 </div>
             </div>
         </div>
         <div class="bottom">
             <p>bottom</p>
         </div>
-
     </div>
-        <dialog id="addBookModal">
-            <p>Add a new book to the library</p>
-            <form id="modalForm">
-                <div class="book-inputs">
-                    <label for="dialogTitle">Title</label>
-                    <input type="text" id="dialogTitle" placeholder="Title">
-                    <label for="dialogAuthor">Author</label>
-                    <input type="text" id="dialogAuthor" placeholder="Author">
-                    <label for="formPages">Pages</label>
-                    <input type="text" id="formPages" pattern="[0-9]+$">
-                </div>
-                <div class="dialog-buttons">
-                    <button id="confirmButton" value="default">Add</button>
-                    <button value="Cancel" formmethod="dialog" id="cancelModal">Cancel</button>
-                </div>
-            </form>
-        </dialog>
+    <div id="addBookModal" class="modal inactive">
+        <div>
+            <p>Add a new book</p>
+            <button id='cancelModal'>Cancel</button>
+        </div>
+        <form id="modalForm">
+            <div class="book-inputs">
+                <input type="text" id="dialogTitle" placeholder="Title">
+                <input type="text" id="dialogAuthor" placeholder="Author">
+                <input type="number" id="formPages" placeholder="Page count">
+            </div>
+            <div class="checkbox-container">
+                <label for="readCheck">Read?</label>
+                <input type="checkbox" id="readCheck">
+            </div>
+            <div class="dialog-buttons">
+                <button id="confirmButton" value="add" formmethod="dialog">Add</button>
+            </div>
+        </form>
+    </div>
+    <div id="backdrop" class="modal inactive"></div>
 </body>
 <script src="./script.js"></script>
 
