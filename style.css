@@ -2,6 +2,9 @@
     --bg-colour: grey;
     --text-colour: white;
     --paper-colour: #ede4d5;
+    --green-button: hsl (120, 100%, 75%);
+    --red-button: hsl (0, 100%, 70%);
+    --grey-button: hsl(0, 0%, 75%);
 }
 
 * {
@@ -10,23 +13,20 @@
     margin: 0;
     padding: 0;
 }
-
 html {
     height: 100vh;
 }
-
 body {
-    height: 100vh;
-    display: grid;
-    grid-template-rows: minmax(2.5rem, 7vh) 8fr minmax(2em, 0.5fr);
-}
-
-.container {
     height: 100%;
     display: grid;
-    grid-template-rows: 0.75fr 9fr;
+    grid-template-rows: minmax(2.5rem, 7vh) 8fr;
 }
-
+.container {
+    display: grid;
+    grid-template-rows: minmax(2rem, 0.75fr) 9fr;
+    margin: 0;
+    padding: 0;
+}
 .header {
     display: flex;
     justify-content: center;
@@ -37,11 +37,9 @@ body {
     grid-row: 1/2;
     font-size: 2rem;
 }
-
 .top {
     display: flex;
     grid-row: 1/2;
-    border: 1px solid black;
     justify-content: center;
     align-items: center;
 }
@@ -54,19 +52,39 @@ body {
 }
 .cards{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10vw, 1fr));
-    grid-template-rows: repeat(auto-fit);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     padding: 15vh 10vw 15vh 10vw;
     gap: 1vw;
 }
 .card{
-    min-width: 100px;
-    height: 30vh;
-    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: 1px solid rgba(109, 110, 112, 1);
     border-radius: 10px;
-    box-shadow: 5px 5px rgba(109, 110, 112, 0.5);
+    box-shadow: 5px 5px rgba(109, 110, 112, 0.3);
     padding: 10px;
+}
+.book-info{
+    padding: 5px 0 5px 0;
+}
+.card-buttons{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    gap: 15px;
+    padding-top: 15px;
+    width: 100%;
+}
+.card-button{
+    height: 1.75rem;
+    border-radius: 5px;
+    border: none;
+}
+button:hover{
+    cursor: pointer;
+    transition: filter 0.6s ;
+    filter: brightness(0.9);
 }
 .bottom {
     display: flex;
@@ -76,20 +94,32 @@ body {
     color: var(--text-colour);
     background-color: var(--bg-colour);
     grid-row: 3/4;
+    margin: 0;
+    padding: 0;
 }
 #addBookModal{
     position: absolute;
-    top: 50%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: auto;
     padding: 0;
+    min-height: fit-content;
+    max-height: fit-content;
     grid-template-rows: 1fr 6fr;
+    width: fit-content;
     border: none;
     padding: 10px;
     border-radius: 5px;
     background-color: var(--paper-colour);
-    height: 30vh;
     justify-items: center;
     z-index: 1;
+}
+.modal-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 #modalForm{
     display: grid;
@@ -107,6 +137,27 @@ body {
 }
 input{
     max-width: 200px;
+    border-radius: 5px;
+    padding: 3px;
+    border: none;
+}
+input:focus {
+    border: none;
+    outline: none;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    transform: scale(1.02);
+}
+.green-button{
+    background-color: var(--green-button);
+}
+.red-button{
+    background-color: var(--red-button);
+}
+#confirmButton{
+    width: 100%;
+    height: 1.5rem;
+    border: none;
 }
 #backdrop{
     width: 100%;

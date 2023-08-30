@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Library</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -23,8 +23,10 @@
                     <div class="book-author">author</div>
                 </div>
                 <div class="card">
-                    <div class="book-title">book title</div>
-                    <div class="book-author">author</div>
+                    <div class="book-title book-info">book title</div>
+                    <div class="book-author book-info">author</div>
+                    <div class="card-buttons">
+                    </div>
                 </div>
                 <div class="card">
                     <div class="book-title">book title</div>
@@ -49,14 +51,14 @@
             <p>bottom</p>
         </div>
     </div>
+    <div id="backdrop" class="modal inactive"></div>
     <div id="addBookModal" class="modal inactive">
-        <div>
+        <div class="modal-header">
             <p>Add a new book</p>
-            <button id='cancelModal'>Cancel</button>
         </div>
         <form id="modalForm">
             <div class="book-inputs">
-                <input type="text" id="dialogTitle" placeholder="Title">
+                <input type="text" id="dialogTitle" placeholder="Title" autofocus>
                 <input type="text" id="dialogAuthor" placeholder="Author">
                 <input type="number" id="formPages" placeholder="Page count">
             </div>
@@ -69,7 +71,6 @@
             </div>
         </form>
     </div>
-    <div id="backdrop" class="modal inactive"></div>
 </body>
 <script src="./script.js"></script>
 
