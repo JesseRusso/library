@@ -10,6 +10,7 @@ const confirmButton = document.getElementById("confirmButton");
 const dialogTitle = document.getElementById('dialogTitle');
 const dialogAuthor = document.getElementById('dialogAuthor');
 const formPages = document.getElementById('formPages');
+const readCheck = document.getElementById('readCheck');
 
 document.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -26,30 +27,21 @@ backdrop.addEventListener('click', (e) => {
         closeModal();
     }
 })
-
-function Book(title, author, pages) {
+readCheck.addEventListener("click", () => {
+    readCheck.toggleAttribute('checked');
+})
+function Book(title, author, pages, isRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = false;
+    this.isRead = isRead;
 }
 
-const theStranger = new Book("The Stranger", "Albert Camus", 121);
-const wind = new Book("The Name of The Wind", "Patrick Rothfuss", 454);
-myLibrary.push(theStranger);
-myLibrary.push(wind);
-
-function addBookToLibrary(title, author, pages) {
-    const newBook = new Book(title, author, pages);
+function addBookToLibrary(title, author, pages, isRead) {
+    const newBook = new Book(title, author, pages, isRead);
     myLibrary.push(newBook);
     displayBooks();
 }
-addBookToLibrary("Meow?", "Lando", 1);
-addBookToLibrary("The Red Queen Theory", "Matt Ridley", 365);
-addBookToLibrary("A Tale of Two Cities", "Ray Bradbury", 300);
-addBookToLibrary("The Life of Pie", "Yann Martel", 250);
-
-displayBooks();
 
 function displayBooks () {
     //clears the current grid
@@ -71,7 +63,7 @@ function newCard (book){
     title.classList.add("book-title");
     title.classList.add('book-info');
     card.appendChild(title);
-
+    //add author to card
     const author = document.createElement("div");
     author.innerText = book.author;
     author.classList.add("book-author");
@@ -98,9 +90,9 @@ function newCard (book){
     readButton.textContent = 'Read';
     removeButton.textContent = 'Remove';
     readButton.classList.add('card-button');
-    readButton.classList.add('button-green');
+    readButton.classList.add('read-button');
     removeButton.classList.add('card-button');
-    removeButton.classList.add('button-grey');
+    removeButton.classList.add('red-button');
     buttons.appendChild(readButton);
     buttons.appendChild(removeButton);
     card.appendChild(buttons);
@@ -109,14 +101,22 @@ function newCard (book){
         removeBookFromLibrary(book);
     })
     readButton.addEventListener('click', () => {
-        readButton.
+        book.isRead = !book.isRead;
+        readButton.classList.toggle("green-button");
+        changeReadText(book, card.lastChild.firstChild);
     })
+    if(book.isRead){
+        readButton.classList.toggle("green-button");
+    }
     //add card to grid
+    changeReadText(book, card.lastChild.firstChild);
     cardsGrid.appendChild(card);
     return card;
 }
+
 function submitModal(){
-    addBookToLibrary(dialogTitle.value, dialogAuthor.value, formPages.value);
+    addBookToLibrary(dialogTitle.value, dialogAuthor.value, formPages.value, readCheck.checked);
+    clearModalValues();
     closeModal();
 }
 function openModal(){
@@ -131,6 +131,15 @@ function closeModal(){
     dia.classList.add('inactive');
     backdrop.classList.remove('active');
     backdrop.classList.add('inactive');
+    clearModalValues();
+}
+function clearModalValues(){
+    dialogTitle.value = '';
+    dialogAuthor.value = '';
+    formPages.value = '';
+    if(readCheck.checked){
+        readCheck.click();
+    }
 }
 function removeBookFromLibrary(book){
     let hasTitle = myLibrary.includes(book);
@@ -139,4 +148,11 @@ function removeBookFromLibrary(book){
         myLibrary.splice(index, 1);
     }
     displayBooks();
+}
+function changeReadText(book, obj){
+    if(book.isRead){
+        obj.innerText = 'Read';
+        return;
+    }
+    obj.innerText = 'Not read';
 }

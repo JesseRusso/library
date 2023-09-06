@@ -2,8 +2,8 @@
     --bg-colour: grey;
     --text-colour: white;
     --paper-colour: #ede4d5;
-    --green-button: hsl (120, 100%, 75%);
-    --red-button: hsl (0, 100%, 70%);
+    --green-button: hsl(120, 100%, 80%);
+    --red-button: hsl(0, 100%, 80%);
     --grey-button: hsl(0, 0%, 75%);
 }
 
@@ -42,10 +42,18 @@ body {
     grid-row: 1/2;
     justify-content: center;
     align-items: center;
+    padding-top: 10px;
 }
 #addBook{
     border: none;
     background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: scale 0.5s;
+}
+#addBook:hover{
+    scale: 1.1;
 }
 .middle {
     grid-row: 2/3;
@@ -78,12 +86,14 @@ body {
 }
 .card-button{
     height: 1.75rem;
-    border-radius: 5px;
+}
+button{
     border: none;
+    border-radius: 5px;
 }
 button:hover{
     cursor: pointer;
-    transition: filter 0.6s ;
+    transition: filter 0.5s ;
     filter: brightness(0.9);
 }
 .bottom {
@@ -172,6 +182,9 @@ input:focus {
 }
 .modal.active{
     display: grid;
+}
+a, a:visited{
+    color: black;
 }
 dialog::backdrop{
     background: rgba(0, 0, 0, 0.35);
