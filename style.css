@@ -1,14 +1,15 @@
 :root {
-    --bg-colour: grey;
-    --text-colour: white;
-    --paper-colour: #ede4d5;
+    --bg-colour: #61677A;
+    --text-colour: black;
+    --paper-colour: #FFF6E0;
     --green-button: hsl(120, 100%, 80%);
     --red-button: hsl(0, 100%, 80%);
-    --grey-button: hsl(0, 0%, 75%);
+    --grey-button: #D8D9DA;
+    --modal-input-width: 220px;
 }
 
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lora', serif, Arial, Helvetica, sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -20,11 +21,11 @@ html {
 body {
     height: 100%;
     display: grid;
-    grid-template-rows: minmax(2.5rem, 7vh) 8fr;
+    grid-template-rows: minmax(3rem, 7vh) 1fr;
 }
 .container {
     display: grid;
-    grid-template-rows: minmax(2rem, 0.75fr) 9fr;
+    grid-template-rows: minmax(2rem, 0.75fr) 5fr;
     margin: 0;
     padding: 0;
 }
@@ -34,16 +35,17 @@ body {
     align-items: center;
     width: 100%;
     background-color: var(--bg-colour);
-    color: white;
+    color: var(--text-colour);
     grid-row: 1/2;
     font-size: 2rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }
 .top {
     display: flex;
     grid-row: 1/2;
     justify-content: center;
     align-items: center;
-    padding-top: 10px;
+    padding-top: 30px;
     font-size: 1.5rem;
 }
 #addBook{
@@ -60,11 +62,12 @@ body {
 }
 .middle {
     grid-row: 2/3;
+    height: auto;
 }
 .cards{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    padding: 15vh 10vw 15vh 10vw;
+    padding: 10vh 10vw 10vh 10vw;
     gap: 1vw;
 }
 .card{
@@ -73,7 +76,7 @@ body {
     align-items: center;
     border: 1px solid rgba(109, 110, 112, 1);
     border-radius: 10px;
-    box-shadow: 5px 5px rgba(109, 110, 112, 0.3);
+    box-shadow: 5px 5px 5px rgba(109, 110, 112, 0.3);
     padding: 10px;
     font-size: 1rem;
 }
@@ -97,24 +100,23 @@ button{
 }
 button:hover{
     cursor: pointer;
-    transition: filter 0.5s ;
+    transition: filter 0.3s ;
     filter: brightness(0.9);
 }
 .bottom {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
-    color: var(--text-colour);
+    color: black;
     background-color: var(--bg-colour);
     grid-row: 3/4;
     margin: 0;
     padding: 0;
+    height: 1.5rem;
 }
-#addBookModal{
+.add-book-modal{
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
@@ -129,6 +131,7 @@ button:hover{
     background-color: var(--paper-colour);
     justify-items: center;
     z-index: 1;
+    transition: transform .4s;
 }
 .modal-header{
     width: 100%;
@@ -140,17 +143,24 @@ button:hover{
     gap: 1vh;
     grid-template-rows: 5fr 1fr;
     height: 100%;
-    width: inherit;
+    width: fit-content;
     padding: 0 5px 0 5px;
+    align-items: center;
 }
 .book-inputs{
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-    width: inherit;
+    width: 100%;
+    align-items: center;
+    height: 125px;
+}
+.dialog-buttons{
+    display: flex;
+    justify-content: center;
 }
 input{
-    max-width: 200px;
+    width: var(--modal-input-width);
     border-radius: 5px;
     padding: 3px;
     border: none;
@@ -162,6 +172,14 @@ input:focus {
     box-sizing: border-box;
     transform: scale(1.02);
 }
+.checkbox-container{
+    display: flex;
+    justify-content: space-between;
+}
+#readCheck{
+    width: auto;
+    box-shadow: none;
+}
 .green-button{
     background-color: var(--green-button);
 }
@@ -169,9 +187,10 @@ input:focus {
     background-color: var(--red-button);
 }
 #confirmButton{
-    width: 100%;
+    width: var(--modal-input-width);
     height: 1.5rem;
     border: none;
+    background-color: var(--grey-button);
 }
 #backdrop{
     width: 100%;
@@ -181,14 +200,21 @@ input:focus {
     right: 0;
     background-color: rgba(0, 0, 0, 0.35);
 }
-.modal.inactive{
+.add-book-modal.inactive{
+    transform: scale(0);
+    transform-origin: 50% 30%;
+    transition: transform .2s
+}
+.add-book-modal.active{
+    transform: scale(1) translateY(30%);
+    transform-origin: 50% 30%;
+}
+
+#backdrop.inactive{
     display: none;
 }
-.modal.active{
-    display: grid;
-}
 a, a:visited{
-    color: black;
+    color: var(--text-colour);
 }
 dialog::backdrop{
     background: rgba(0, 0, 0, 0.35);

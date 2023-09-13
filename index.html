@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/266a5d8226.js" crossorigin="anonymous"></script>
 </head>
 
@@ -22,11 +25,12 @@
             </div>
         </div>
         <div class="bottom">
-            <p>Jesse Russo <a href="https://github.com/JesseRusso"><i class="fa fa-github fa-m"></i></a> The Odin Project</p>
+            <p>Jesse Russo <a href="https://github.com/JesseRusso"><i class="fa fa-github fa-m"></i></a> The Odin
+                Project</p>
         </div>
     </div>
     <div id="backdrop" class="modal inactive"></div>
-    <div id="addBookModal" class="modal inactive">
+    <div class="add-book-modal modal inactive">
         <div class="modal-header">
             <p>Add a new book</p>
         </div>
@@ -37,7 +41,7 @@
                 <input type="number" id="formPages" placeholder="Page count">
             </div>
             <div class="checkbox-container">
-                <label for="readCheck">Read?</label>
+                <label for="readCheck">I've finished the book</label>
                 <input type="checkbox" id="readCheck">
             </div>
             <div class="dialog-buttons">

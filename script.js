@@ -3,7 +3,7 @@ let currentPage = 1;
 let booksPerPage = 10;
 
 let cardsGrid = document.getElementById("grid");
-const dia = document.getElementById("addBookModal");
+const dia = document.querySelector(".add-book-modal");
 const overlay = document.getElementById('backdrop');
 const addBookButton = document.getElementById("addBook");
 const confirmButton = document.getElementById("confirmButton");
@@ -73,12 +73,13 @@ function newCard (book){
     //add page count to card
     const pages = document.createElement('p');
     pages.classList.add('pages');
-
-    if (parseInt(book.pages) <= 1) {
-        pages.textContent = `${book.pages} page`;
-    }
-    else{
-        pages.textContent = `${book.pages} pages`;
+    if(book.pages > 0){
+        if (parseInt(book.pages) <= 1) {
+            pages.textContent = `${book.pages} page`;
+        }
+        else{
+            pages.textContent = `${book.pages} pages`;
+        }
     }
     card.appendChild(pages);
 
