@@ -16,7 +16,7 @@
 }
 html {
     height: 100vh;
-    font-size: 16px;
+    font-size: 12pt;
 }
 body {
     height: 100%;
@@ -202,12 +202,12 @@ input:focus {
 }
 .add-book-modal.inactive{
     transform: scale(0);
-    transform-origin: 50% 30%;
+    transform-origin: 50% 35%;
     transition: transform .2s
 }
 .add-book-modal.active{
-    transform: scale(1) translateY(30%);
-    transform-origin: 50% 30%;
+    transform: scale(1) translateY(35%);
+    transform-origin: 50% 35%;
 }
 
 #backdrop.inactive{
